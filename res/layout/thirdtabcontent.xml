@@ -9,8 +9,8 @@
     <Button android:text="Backup to Local File" android:id="@+id/loadToFile" android:layout_height="wrap_content" android:layout_width="match_parent"></Button>
     <Button android:layout_height="wrap_content" android:text="Delete All DOBs" android:id="@+id/deleteAllButton" android:layout_width="match_parent"></Button>
     <RelativeLayout android:layout_width="match_parent" android:id="@+id/relativeLayout1" android:layout_height="wrap_content">
-        <TextView android:textSize="6dp" android:layout_width="wrap_content" android:id="@+id/textView1" android:textAppearance="?android:attr/textAppearanceSmall" android:text="CB106CS030" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"></TextView>
-        <Button android:layout_width="30sp" android:background="@drawable/info" android:id="@+id/infoButton" android:layout_height="30sp" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></Button>
+        <TextView android:textSize="7dp" android:layout_width="wrap_content" android:id="@+id/textView1" android:textAppearance="?android:attr/textAppearanceSmall" android:text="CB106CS030" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"></TextView>
+        <Button android:id="@+id/infoButton" android:layout_width="35dp" android:layout_height="35dp" android:background="@drawable/info" android:layout_above="@+id/textView1" android:layout_alignParentRight="true" android:layout_marginRight="10dp"></Button>
     </RelativeLayout>
     
 </LinearLayout>

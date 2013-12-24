@@ -19,89 +19,8 @@ public class FirstTab extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 		
-//		Context context = getApplicationContext();
-//		NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-
-/*		try {
-			// Open the file that is the first
-			// command line parameter
-//			File file = new File("dob.txt");
-//			System.out.println(file.isFile());
-//			FileInputStream fstream = new FileInputStream("/Birthday/dob.txt");
-//			FileInputStream fstream = openFileInput("dob.txt");
-//			AssetFileDescriptor descriptor = getAssets().openFd("myfile.txt");
-//			FileReader reader = new FileReader(descriptor.getFileDescriptor());
-
-			
-			AssetManager am = getApplicationContext().getAssets();
-			InputStream fstream = am.open("dob.txt");		
-			// Get the object of DataInputStream
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br;
-			
-			if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-			{
-				//sdcard not found
-				br = new BufferedReader(new InputStreamReader(in));
-			}
-			else
-			{
-				File sdcard = Environment.getExternalStorageDirectory();
-				//Get the text file
-				File file = new File(sdcard,"dob.txt");
-				if(file.exists())	//check for existence
-				{
-					br = new BufferedReader(new FileReader(file));
-				}
-				else	//read from bundle if not exist
-				{
-					br = new BufferedReader(new InputStreamReader(in));
-				}
-			}
-			
-			String strLine;
-			Calendar cal = Calendar.getInstance();
-			int thisDate = cal.get(Calendar.DATE);
-			int thisMonth = cal.get(Calendar.MONTH) + 1;
-			// Read File Line By Line
-			while ((strLine = br.readLine()) != null) {
-				// Print the content on the console
-				System.out.println(strLine);
-				for(int i=0; i<strLine.length(); i++)
-				{
-					if(strLine.charAt(i) == ' ')
-					{
-						String n1 = strLine.substring(0, i);
-//						System.out.println("date " + strLine.substring(i+1, i+3) + "month " + strLine.substring(i+4, i+6));
-						int d1 = Integer.parseInt(strLine.substring(i+1, i+3));
-						int m1 = Integer.parseInt(strLine.substring(i+4, i+6));
-//						System.out.println("date " + d1 + "month " + m1);
-						if(m1 == thisMonth && d1 == thisDate)
-						{
-							UserDOB userDob = new UserDOB();
-							userDob.name = thisDate +" - "+ n1;
-							Date birthDate = new Date();
-							Date today = cal.getTime();
-							
-							birthDate.setDate(d1);
-							birthDate.setMonth(m1 - 1);
-							birthDate.setYear(today.getYear());
-							//System.out.println("current year -- "+ today.getYear() + "cal --" + Calendar.YEAR);							
-							userDob.setBirthDate(birthDate);
-							users.add(userDob);
-						}
-						break;
-					}
-				}
-			}
-			// Close the input stream
-			in.close();
-		} catch (Exception e) {// Catch exception if any
-			System.err.println("Error: " + e.getMessage());
-		}
-		*/
-
 		String[] names;
 		DBHelper dbHelper = new DBHelper(this);
 		Calendar cal = Calendar.getInstance();
@@ -136,13 +55,15 @@ public class FirstTab extends Activity {
 //					+ dateOfBirth.getDob());
 			Map<String, String> datum = new HashMap<String, String>();
 			datum.put("name", names[i]);
-			if(Integer.parseInt(dateOfBirth.getAge()) == 1)
+			if(Integer.parseInt(dateOfBirth.getAge()) == 1 || Integer.parseInt(dateOfBirth.getAge()) == 2)
 			{
-				datum.put("age", "Completing : " + dateOfBirth.getAge() + " years");
+				int modifiedAge = Integer.parseInt(dateOfBirth.getAge()) - 1;
+				datum.put("age", "Completing : " + modifiedAge + " year");
 			}
 			else
 			{
-				datum.put("age", "Completing : " + dateOfBirth.getAge() + " years");	
+				int modifiedAge = Integer.parseInt(dateOfBirth.getAge()) - 1;
+				datum.put("age", "Completing : " + modifiedAge + " years");	
 			}
 			data.add(datum);
 			i++;
@@ -150,22 +71,6 @@ public class FirstTab extends Activity {
 
 		
 		/* First Tab Content */
-
-//		if(users.size() == 0)
-//		{
-//			names = new String[1];		
-//			names[0] = "Empty";
-//		}
-//		else
-//		{
-//			names = new String[users.size()];
-//		}
-//		int i = 0;
-//		for(UserDOB user : users)
-//		{
-//			names[i] = user.name;
-//			i++;
-//		}
 		
 		setContentView(R.layout.firsttab);
 				
@@ -174,21 +79,5 @@ public class FirstTab extends Activity {
 		ListView listView = (ListView)findViewById(R.id.listView1);
 		listView.setAdapter(adapter);
 		//setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names));
-/*		Notification notification = new Notification();
-		notification.icon = R.drawable.icon;
-		notification.tickerText = "Hai";
-		notification.when = System.currentTimeMillis();
-		
-		Intent notificationIntent = new Intent(context, BirthdayActivity.class);
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-		
-		notification.setLatestEventInfo(context, "testing", "testing test", contentIntent);
-		
-		notificationManager.notify(100, notification);
-		// ListView listView = (ListView)findViewById(R.id.listView1);
-		// setListAdapter(new ArrayAdapter<String>(this, R.id.listView1,
-		// items));
-*/
-//		startService(new Intent(this, MyService.class));
 	}
 }

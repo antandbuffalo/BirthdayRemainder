@@ -31,6 +31,7 @@ public class BirthdayFromNoti extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 		setContentView(R.layout.tab);
 		
 		/** TabHost will have Tabs */

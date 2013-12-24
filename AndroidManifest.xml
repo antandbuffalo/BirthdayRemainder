@@ -20,6 +20,8 @@
 		<activity android:name=".ThirdTabContent" />
 		<activity android:name=".AddNewDOB" />
 		<activity android:name=".EditDetails" />
+		<activity android:name=".ContactInfo" />
+		<!-- <activity android:name="com.google.android.gm.ConversationListActivity" /> -->
 		
 		<receiver android:name="com.balaji.birthdayactivity.BootCompleteTracker">
 			<intent-filter>

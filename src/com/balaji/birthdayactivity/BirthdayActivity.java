@@ -42,94 +42,15 @@ public class BirthdayActivity extends TabActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 		setContentView(R.layout.main);
 
 //		ProgressDialog progressDialog;
 //		progressDialog = new ProgressDialog(this);
 //		progressDialog.setCancelable(true);
 //		progressDialog.setMessage("Please wait while initial launch...");
-		
-/*		
-		DBHelper dbHelper = new DBHelper(this);
-		List<DateOfBirth> allDOBs = dbHelper.getAllDateOfBirths(null);
-		if (allDOBs.isEmpty()) // check whether the db is empty
-		{
-			try {
-//				progressDialog.show();
-				BufferedReader br;
-				DataInputStream in = null;
-
-				if (!Environment.getExternalStorageState().equals(
-						Environment.MEDIA_MOUNTED)) {
-					// sdcard not found. read from bundle
-					AssetManager am = getApplicationContext().getAssets();
-					InputStream fstream = am.open("dob.txt");
-					// Get the object of DataInputStream
-					in = new DataInputStream(fstream);
-
-					br = new BufferedReader(new InputStreamReader(in));
-				} else {
-					File sdcard = Environment.getExternalStorageDirectory();
-					// Get the text file
-					File file = new File(sdcard, "dob.txt");
-					if (file.exists()) // check for existence
-					{
-						br = new BufferedReader(new FileReader(file));
-					} else // read from bundle if not exist
-					{
-						AssetManager am = getApplicationContext().getAssets();
-						InputStream fstream = am.open("dob.txt");
-						// Get the object of DataInputStream
-						in = new DataInputStream(fstream);
-						br = new BufferedReader(new InputStreamReader(in));
-					}
-				}
-
-				String strLine, n1;
-				int d1, m1, y1;
-				DateOfBirth dateOfBirth = new DateOfBirth();
-				// Read File Line By Line
-				while ((strLine = br.readLine()) != null) {
-					// Print the content on the console
-					System.out.println("in main ac -- " + strLine);
-					
-					String[] lineComponents = strLine.split(" ");
-					n1 = lineComponents[0];
-					n1 = n1.replace("_", " ");
-					d1 = Integer.parseInt(lineComponents[1]);
-					m1 = Integer.parseInt(lineComponents[2]);
-					y1 = Integer.parseInt("2000");
-					
-					dateOfBirth.setName(n1);
-					dateOfBirth.setDob(d1 + " " + m1 + " " + y1);
-					dbHelper.addDOB(dateOfBirth);
-/*					
-					for (int i = 0; i < strLine.length(); i++) {
-						if (strLine.charAt(i) == ' ') {
-							String n1 = strLine.substring(0, i);
-							int d1 = Integer.parseInt(strLine.substring(i + 1,
-									i + 3));
-							int m1 = Integer.parseInt(strLine.substring(i + 4,
-									i + 6));
-							// System.out.println("date " + d1 + "month " + m1);
-							DateOfBirth dateOfBirth = new DateOfBirth();
-							dateOfBirth.setname(n1);
-							dateOfBirth.setDob(d1 + " " + m1 + " " + "2000");
-							dbHelper.addDOB(dateOfBirth);
-							break;
-						}
-					}
-*/
-		/*
-				}
-				// Close the input stream
-				//progressDialog.dismiss();
-				in.close();
-			} catch (Exception e) {// Catch exception if any
-				System.err.println("Error: " + e.getMessage());
-			}
-		}
-		*/
+	
 		/** TabHost will have Tabs */
 		TabHost tabHost = getTabHost(); //(TabHost) findViewById(android.R.id.tabhost);
 

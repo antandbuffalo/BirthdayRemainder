@@ -27,6 +27,7 @@ public class AddNewDOB extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 		setContentView(R.layout.addnewdob);
 		
 		Button button1 = (Button) findViewById(R.id.button1);

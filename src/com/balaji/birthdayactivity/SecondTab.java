@@ -37,106 +37,13 @@ public class SecondTab extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 		setContentView(R.layout.secondtab);
-/*		
-		dbHelper = new DBHelper(this);
-		users = dbHelper.getAllDateOfBirths(null);
-		
-		//Collections.sort(users, new DateComparator());
-		
-		Calendar cal = Calendar.getInstance();
-		Date today = cal.getTime();
-		today.setYear(2000);
-		today.setHours(0);
-		today.setMinutes(0);
-		today.setSeconds(0);
-		for(DateOfBirth dateOfBirth : users)
-		{
-			//System.out.println(dateOfBirth.getDobDate().toString());
-			//System.out.println(today.toString());
-			
-			dateOfBirth.setname(dateOfBirth.getDobDate().getDate() + " / " + (dateOfBirth.getDobDate().getMonth()+1) + " - " + dateOfBirth.getName());
-			//dateOfBirth.getDobDate().setYear(today.getYear());
-			//System.out.println("today : " + today + " given : " + dateOfBirth.getDobDate());
-					
-			if(dateOfBirth.getDobDate().before(today))
-			{
-				beforeToday.add(dateOfBirth);
-			}
-			else	//includes today
-			{
-				if(dateOfBirth.getDobDate().getDate() == today.getDate() && dateOfBirth.getDobDate().getMonth() == today.getMonth())
-				{
-					dateOfBirth.setname(dateOfBirth.getName() + " * ");
-				}
-				afterToday.add(dateOfBirth);
-			}
-		}
-			
-		users.removeAll(users);
-		
-		/* Second Tab Content 
-		System.out.println("before1 " + afterToday.size());
-		System.out.println("before2 " + beforeToday.size());
-		Collections.sort(afterToday, new DateComparator());
-		Collections.sort(beforeToday, new DateComparator());
-		users.addAll(afterToday);
-		users.addAll(beforeToday);
-		*/
 		
 		sortAndGetAllData();
 		System.out.println("all " + users.size());
 		
 		filerDataForSearch();
-		
-/*		if(users.size() == 0)
-		{
-			searchResults.add("Empty");
-		}
-		
-		for(DateOfBirth user : users)
-		{
-			searchResults.add(user.getName());
-		}
-		originalData.addAll(searchResults);
-		setContentView(R.layout.secondtab);
-		adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, searchResults);
-		setListAdapter(adapter);
-	
-//		stopService(new Intent(this, MyService.class));
-		
-		inputSearch = (EditText) findViewById(R.id.inputSearch);
-		inputSearch.addTextChangedListener(new TextWatcher() {
-		     
-		    public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-		        // When user changed the Text
-		    	searchResults.clear();
-		        //adapter.getFilter().filter(cs);  
-		    	String searchString = inputSearch.getText().toString().toLowerCase(); 
-		    	 
-		    	   for(int i=0;i<originalData.size();i++)
-		    	   {
-		    		   String playerName=originalData.get(i);
-		    		   playerName = playerName.toLowerCase();
-		    			   if(playerName.contains(searchString))
-		    				   searchResults.add(originalData.get(i));
-		    	   }
-		    	 
-		    	   adapter.notifyDataSetChanged();
-		    }
-		     
-		    public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-		            int arg3) {
-		        // TODO Auto-generated method stub
-		         
-		    }
-		     
-		    public void afterTextChanged(Editable arg0) {
-		        // TODO Auto-generated method stub                         
-		    }
-		});
-		*/
 	}
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -280,11 +187,6 @@ public class SecondTab extends ListActivity {
 		{
 			//System.out.println(dateOfBirth.getDobDate().toString());
 			//System.out.println(today.toString());
-			
-//			dateOfBirth.setname(dateOfBirth.getDobDate().getDate() + " / " + (dateOfBirth.getDobDate().getMonth()+1) + " - " + dateOfBirth.getName());
-			//dateOfBirth.setDisplayName(dateOfBirth.getDobDate().getDate() + " / " + (dateOfBirth.getDobDate().getMonth()+1) + " - " + dateOfBirth.getName());
-			//dateOfBirth.getDobDate().setYear(today.getYear());
-			//System.out.println("today : " + today + " given : " + dateOfBirth.getDobDate());
 					
 			if(dateOfBirth.getDobDate().before(today))
 			{
@@ -299,6 +201,9 @@ public class SecondTab extends ListActivity {
 					if(!dateOfBirth.getDisplayName().contains("*"))
 					{
 						dateOfBirth.setDisplayName(dateOfBirth.getDisplayName() + "*");	
+						//...
+						int modifiedAge = Integer.parseInt(dateOfBirth.getAge()) - 1;
+						dateOfBirth.setAge(modifiedAge + "");
 					}
 				}
 				afterToday.add(dateOfBirth);
@@ -391,25 +296,6 @@ public class SecondTab extends ListActivity {
 				displayData.add(originalData.get(i));
 				//searchResults.add(originalData.get(i));
 		}
-
-		/*		
-		for(DateOfBirth user : users)
-		{
-			searchResults.add(user.getDisplayName());
-		}
-		if(users.size() == 0)
-		{
-			searchResults.add("Empty");
-		}		
-		System.out.println("fin--" + searchResults.size());
-		
-		if(originalData.size() > 0)
-		{
-			originalData.clear();
-		}
-		
-		originalData.addAll(searchResults);
-		*/
 		//adapter.notifyDataSetChanged();
 		simpleAdapter.notifyDataSetChanged();
 	//	filerDataForSearch();

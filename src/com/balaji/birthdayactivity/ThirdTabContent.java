@@ -36,39 +36,12 @@ public class ThirdTabContent extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		//overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);		
 		setContentView(R.layout.thirdtabcontent);
 
 		alertDialogBuilder = new AlertDialog.Builder(ThirdTab.thirdTab);
 
-		/*
-		 * ListView listView = (ListView)findViewById(R.id.myList);
-		 * 
-		 * String[] names = new String[3]; names[0] = "Add New dob"; names[1] =
-		 * "Load dob from local file"; names[2] = "Backup dob to local file";
-		 * 
-		 * ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-		 * android.R.layout.simple_list_item_1, android.R.id.text1, names);
-		 * listView.setAdapter(adapter);
-		 * 
-		 * listView.setOnItemClickListener(new OnItemClickListener() {
-		 * 
-		 * public void onItemClick(AdapterView<?> parent, View view, int
-		 * position, long id) { // TODO Auto-generated method stub if(position
-		 * == 0) //add new { Intent i = new Intent(view.getContext(),
-		 * AddNewDOB.class);
-		 * 
-		 * View view1 =
-		 * ThirdTab.thirdTab.getLocalActivityManager().startActivity
-		 * ("AddNewDOB",
-		 * i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)).getDecorView(); // Again,
-		 * replace the view ThirdTab.thirdTab.replaceView(view1);
-		 * 
-		 * } else if(position == 1) //external to local {
-		 * 
-		 * } else //local to external {
-		 * 
-		 * } } });
-		 */
 		// statusTextView = (TextView)findViewById(R.id.statusText);
 		Button addNew = (Button) findViewById(R.id.addNewDob);
 		Button loadFromFile = (Button) findViewById(R.id.loadFromFile);
@@ -272,17 +245,22 @@ public class ThirdTabContent extends Activity {
 			}
 		});
 		infoButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View arg0) {
+			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				alertDialogBuilder = new AlertDialog.Builder(ThirdTab.thirdTab);
-				alertDialogBuilder.setTitle("Contact Info");
-				alertDialogBuilder
-						.setMessage("Developed by Ant and Buffalo. For any queries email to antandbuffalo@gmail.com");
-				alertDialogBuilder.setPositiveButton("OK", null);
-				// create alert dialog
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				// show it
-				alertDialog.show();
+//				alertDialogBuilder = new AlertDialog.Builder(ThirdTab.thirdTab);
+//				alertDialogBuilder.setTitle("Contact Info");
+//				alertDialogBuilder
+//						.setMessage("Developed by Ant and Buffalo. For any queries email to antandbuffalo@gmail.com");
+//				alertDialogBuilder.setPositiveButton("OK", null);
+//				// create alert dialog
+//				AlertDialog alertDialog = alertDialogBuilder.create();
+//				// show it
+//				alertDialog.show();
+				
+				Intent i = new Intent(v.getContext(), ContactInfo.class);
+
+				startActivity(i);
+				// Again, replace the view
 			}	
 		});
 	}
