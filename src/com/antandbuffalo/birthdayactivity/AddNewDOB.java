@@ -95,7 +95,7 @@ public class AddNewDOB extends Activity {
 								DateOfBirth dateOfBirth = new DateOfBirth();
 								// Read File Line By Line
 								while ((strLine = br.readLine()) != null) {
-									// Print the content on the console
+									// Print the content on the console afdf
 									System.out.println("in main ac -- " + strLine);
 									
 									String[] lineComponents = strLine.split(" ");
